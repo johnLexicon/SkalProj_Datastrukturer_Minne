@@ -48,17 +48,16 @@ namespace SkalProj_Datastrukturer_Minne
                         ExamineStack();
                         break;
                     case '4':
-                        CheckParanthesis();
+                        string text = AskForString("Give text to check for parenthesis: ");
+                        CheckParanthesis(text);
                         break;
                     case '5':
-                        Console.Write("Give a number for the recursive even method: ");
-                        int number = AskForInteger();
+                        int number = AskForInteger("Give a number for the recursive even method: ");
                         int result = RecursiveEven(number);
                         Console.WriteLine("Recursive even result: " + result);
                         break;
                     case '6':
-                        Console.Write("Give number for the Fibonacci method: ");
-                        int fnumber = AskForInteger();
+                        int fnumber = AskForInteger("Give number for the Fibonacci method: ");
                         int fresult = Fibonacci(fnumber);
                         Console.WriteLine("Fibonacci result: " + fresult);
                         break;
@@ -118,7 +117,7 @@ namespace SkalProj_Datastrukturer_Minne
             */
         }
 
-        static void CheckParanthesis()
+        static void CheckParanthesis(string text = "[({})]")
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
@@ -126,7 +125,32 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}]
              */
 
+            Stack<char> stack = new Stack<char>();
 
+            foreach (var ch in text)
+            {
+                switch (ch)
+                {
+                    case '(':
+                        stack.Push((char)(ch + 1));
+                        break;
+                    case '[':
+                    case '{':
+                        stack.Push((char)(ch + 2));
+                        break;
+                    case ')':
+                    case ']':
+                    case '}':
+                        char lastParenthesis = stack.Pop();
+                        if (!ch.Equals(lastParenthesis))
+                        {
+                            Console.WriteLine("WRONG!!!!");
+                            return;
+                        }
+                        break;
+                }    
+            }
+            Console.WriteLine("CORRECT!!!");
         }
 
         /// <summary>
@@ -154,17 +178,29 @@ namespace SkalProj_Datastrukturer_Minne
         }
 
         /// <summary>
+        /// Asks for string.
+        /// </summary>
+        /// <returns>The user answer</returns>
+        /// <param name="prompt">Prompt for the user</param>
+        static string AskForString(string prompt)
+        {
+            Console.Write(prompt);
+            return Console.ReadLine();
+        }
+
+        /// <summary>
         /// Control method for asking after an integer.
         /// </summary>
         /// <returns>The integer given from the user</returns>
-        static int AskForInteger()
+        /// <param name="prompt">Prompt for the user</param>
+        static int AskForInteger(string prompt)
         {
             bool success = false;
             int result;
 
             do
             {
-                string answer = Console.ReadLine();
+                string answer = AskForString(prompt);
                 success = int.TryParse(answer, out result);
                 if (!success)
                 {
