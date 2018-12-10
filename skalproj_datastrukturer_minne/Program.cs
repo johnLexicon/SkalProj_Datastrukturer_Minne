@@ -23,6 +23,7 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
+                    + "\n5. Recursive Even"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -48,10 +49,12 @@ namespace SkalProj_Datastrukturer_Minne
                     case '4':
                         CheckParanthesis();
                         break;
-                    /*
-                     * Extend the menu to include the recursive 
-                     * and iterative exercises.
-                     */
+                    case '5':
+                        Console.Write("Give a number for the recursive even method: ");
+                        int number = AskForInteger();
+                        int result = RecursiveEven(number);
+                        Console.WriteLine("Recursive even result: " + result);
+                        break;
                     case '0':
                         return;
                     default:
@@ -117,5 +120,41 @@ namespace SkalProj_Datastrukturer_Minne
              */
         }
 
+        /// <summary>
+        /// Implemented method for assignment 5.2
+        /// </summary>
+        /// <param name="n">The number to use for invoking new method instances</param>
+        /// <returns></returns>
+        static int RecursiveEven(int n)
+        {
+            if(n == 0)
+            {
+                return 0; //For even values return 0, for odd values return 1
+            }
+            return RecursiveEven(n - 1) + 2;
+        }
+
+        /// <summary>
+        /// Control method for asking after an integer.
+        /// </summary>
+        /// <returns>The integer given from the user</returns>
+        static int AskForInteger()
+        {
+            bool success = false;
+            int result;
+
+            do
+            {
+                string answer = Console.ReadLine();
+                success = int.TryParse(answer, out result);
+                if (!success)
+                {
+                    Console.WriteLine("An integer please!!");
+                }
+
+            } while (!success);
+
+            return result;
+        }
     }
 }
