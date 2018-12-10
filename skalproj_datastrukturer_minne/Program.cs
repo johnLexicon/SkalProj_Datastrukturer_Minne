@@ -18,12 +18,13 @@ namespace SkalProj_Datastrukturer_Minne
             while (true)
             {
 
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
+                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 5, 6, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
                     + "\n5. Recursive Even"
+                    + "\n6. Fibonacci"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -54,6 +55,12 @@ namespace SkalProj_Datastrukturer_Minne
                         int number = AskForInteger();
                         int result = RecursiveEven(number);
                         Console.WriteLine("Recursive even result: " + result);
+                        break;
+                    case '6':
+                        Console.Write("Give number for the Fibonacci method: ");
+                        int fnumber = AskForInteger();
+                        int fresult = Fibonacci(fnumber);
+                        Console.WriteLine("Fibonacci result: " + fresult);
                         break;
                     case '0':
                         return;
@@ -118,6 +125,8 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})]
              * Example of incorrect: (()]), [), {[()}]
              */
+
+
         }
 
         /// <summary>
@@ -132,6 +141,16 @@ namespace SkalProj_Datastrukturer_Minne
                 return 0; //For even values return 0, for odd values return 1
             }
             return RecursiveEven(n - 1) + 2;
+        }
+
+        static int Fibonacci(int n)
+        {
+            if(n <= 0)
+            {
+                return 1;
+            }
+            Console.WriteLine("Tal: " + n);
+            return Fibonacci(n - 1) + Fibonacci(n - 2);
         }
 
         /// <summary>
