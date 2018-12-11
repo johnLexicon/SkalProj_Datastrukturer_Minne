@@ -49,7 +49,7 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                     case '4':
                         string text = AskForString("Give text to check for parenthesis: ");
-                        CheckParanthesis(text);
+                        CheckParantheses(text);
                         break;
                     case '5':
                         int number = AskForInteger("Give a number for the recursive even method: ");
@@ -117,7 +117,7 @@ namespace SkalProj_Datastrukturer_Minne
             */
         }
 
-        static void CheckParanthesis(string text = "[({})]")
+        internal static bool CheckParantheses(string text)
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
@@ -141,16 +141,22 @@ namespace SkalProj_Datastrukturer_Minne
                     case ')':
                     case ']':
                     case '}':
-                        char lastParenthesis = stack.Pop();
-                        if (!ch.Equals(lastParenthesis))
+                        //If less opened parentheses than closed OR not the same type of parntheses.
+                        if (stack.Count == 0 || !ch.Equals(stack.Pop()))
                         {
-                            Console.WriteLine("WRONG!!!!");
-                            return;
+                            return false;
                         }
                         break;
                 }    
             }
-            Console.WriteLine("CORRECT!!!");
+
+            //If more opened parentheses than closed
+            if(stack.Count > 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
