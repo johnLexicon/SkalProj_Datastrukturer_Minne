@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
+using System.Collections.Generic;
 using static SkalProj_Datastrukturer_Minne.Program;
 
 namespace DataStrukturer_Minne_Tests
@@ -51,6 +51,30 @@ namespace DataStrukturer_Minne_Tests
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test()]
+        public void RecursiveFibonacci()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+
+        [Test()]
+        public void IterativeFibonacci_Test()
+        {
+            //Arrange
+            var expected = new List<int> { 1, 1, 2, 3, 5, 8 };
+
+            //Act
+            var actual = IterativeFibonacci(4);
+
+            //Assert
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }
