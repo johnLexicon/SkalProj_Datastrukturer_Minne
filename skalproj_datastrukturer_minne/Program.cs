@@ -158,7 +158,7 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         /// <param name="n">The number to use for invoking new method instances</param>
         /// <returns></returns>
-        static int RecursiveEven(int n)
+        internal static int RecursiveEven(int n)
         {
             if(n == 0)
             {

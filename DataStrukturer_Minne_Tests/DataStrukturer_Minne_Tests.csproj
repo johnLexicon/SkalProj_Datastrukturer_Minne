@@ -37,5 +37,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SkalProj_Datastrukturer_Minne\SkalProj_Datastrukturer_Minne.csproj">
+      <Project>{F5B314C5-B431-47E1-A8EC-7F8654EBF42A}</Project>
+      <Name>SkalProj_Datastrukturer_Minne</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
