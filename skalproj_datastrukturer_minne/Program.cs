@@ -183,6 +183,19 @@ namespace SkalProj_Datastrukturer_Minne
             return Fibonacci(n - 1) + Fibonacci(n - 2);
         }
 
+        internal static IList<int> IterativeFibonacci(int maxNumber)
+        {
+            List<int> elements = new List<int> { 1, 1 };
+
+            for(int i = 0; i < maxNumber; i++)
+            {
+                int newElement = elements[i] + elements[i + 1];
+                elements.Add(newElement);
+            }
+
+            return elements;
+        }
+
         /// <summary>
         /// Asks for string.
         /// </summary>
