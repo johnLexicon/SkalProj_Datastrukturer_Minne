@@ -54,14 +54,15 @@ namespace DataStrukturer_Minne_Tests
         }
 
         [Test()]
-        public void RecursiveFibonacci()
+        public void RecursiveFibonacci_Test()
         {
             //Arrange
 
             //Act
+            int actual = RecursiveFibonacci(4);
 
             //Assert
-
+            Assert.Fail();
         }
 
         [Test()]

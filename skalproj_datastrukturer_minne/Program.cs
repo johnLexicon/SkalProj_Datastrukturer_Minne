@@ -58,7 +58,7 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                     case '6':
                         int fnumber = AskForInteger("Give number for the Fibonacci method: ");
-                        int fresult = Fibonacci(fnumber);
+                        int fresult = RecursiveFibonacci(fnumber);
                         Console.WriteLine("Fibonacci result: " + fresult);
                         break;
                     case '0':
@@ -173,21 +173,17 @@ namespace SkalProj_Datastrukturer_Minne
             return RecursiveEven(n - 1) + 2;
         }
 
-        static int Fibonacci(int n)
+        internal static int RecursiveFibonacci(int n)
         {
-            if(n <= 0)
-            {
-                return 1;
-            }
-            Console.WriteLine("Tal: " + n);
-            return Fibonacci(n - 1) + Fibonacci(n - 2);
+
+            return RecursiveFibonacci(n - 1);
         }
 
-        internal static IList<int> IterativeFibonacci(int maxNumber)
+        internal static IList<int> IterativeFibonacci(int elementsCount)
         {
             List<int> elements = new List<int> { 1, 1 };
 
-            for(int i = 0; i < maxNumber; i++)
+            for(int i = 0; i < elementsCount; i++)
             {
                 int newElement = elements[i] + elements[i + 1];
                 elements.Add(newElement);
