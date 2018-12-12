@@ -18,13 +18,14 @@ namespace SkalProj_Datastrukturer_Minne
             while (true)
             {
 
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 5, 6, 0) of your choice"
+                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 5, 6, 7, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
                     + "\n5. Recursive Even"
-                    + "\n6. Fibonacci"
+                    + "\n6. Iterative Fibonacci"
+                    + "\n7. Iterative Even"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -115,6 +116,7 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
         }
 
         internal static bool CheckParantheses(string text)
@@ -162,8 +164,8 @@ namespace SkalProj_Datastrukturer_Minne
         /// <summary>
         /// Implemented method for assignment 5.2
         /// </summary>
-        /// <param name="n">The number to use for invoking new method instances</param>
-        /// <returns></returns>
+        /// <param name="n">The number of recusrsions</param>
+        /// <returns>The n:th even number</returns>
         internal static int RecursiveEven(int n)
         {
             if(n == 0)
@@ -173,12 +175,40 @@ namespace SkalProj_Datastrukturer_Minne
             return RecursiveEven(n - 1) + 2;
         }
 
+        /// <summary>
+        /// Implemented method for assignment 6.2
+        /// </summary>
+        /// <param name="n">The number of iterations</param>
+        /// <returns>The n:th even number</returns>
+        internal static int IterativeEven(int n)
+        {
+            int result = 0;
+
+            if(n == 0)
+            {
+                return result;
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                result += 2;
+            }
+
+            return result;
+        }
+
+        //TODO: Implement this if you can:-)
         internal static int RecursiveFibonacci(int n)
         {
 
             return RecursiveFibonacci(n - 1);
         }
 
+        /// <summary>
+        /// Implemented method for assignment 6.3 
+        /// </summary>
+        /// <param name="elementsCount"></param>
+        /// <returns></returns>
         internal static IList<int> IterativeFibonacci(int elementsCount)
         {
             List<int> elements = new List<int> { 1, 1 };
