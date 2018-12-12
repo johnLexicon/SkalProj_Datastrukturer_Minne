@@ -58,14 +58,20 @@ namespace SkalProj_Datastrukturer_Minne
                         Console.WriteLine("Recursive even result: " + result);
                         break;
                     case '6':
-                        int fnumber = AskForInteger("Give number for the Fibonacci method: ");
-                        int fresult = RecursiveFibonacci(fnumber);
-                        Console.WriteLine("Fibonacci result: " + fresult);
+                        int fiNumber = AskForInteger("Give number for the Fibonacci method: ");
+                        IList<int> fiResult = IterativeFibonacci(fiNumber);
+                        Console.WriteLine("Iterative fibonacci result:");
+                        //TODO: Print out the result, look how to use yield in this assignment.
+                        break;
+                    case '7':
+                        int ieNumber = AskForInteger("Give number for the Iterative Even method: ");
+                        int ieResult = IterativeEven(ieNumber);
+                        Console.WriteLine("Iterative even result: " + ieResult);
                         break;
                     case '0':
                         return;
                     default:
-                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4, 5, 6, 7)");
                         break;
                 }
             }
