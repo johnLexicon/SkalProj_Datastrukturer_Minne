@@ -93,6 +93,8 @@ namespace DataStrukturer_Minne_Tests
         [TestCase("paris", "sirap")]
         [TestCase("hannah", "hannah")]
         [TestCase("Z", "Z")]
+        [TestCase("", "")]
+        [TestCase("   ", "   ")]
         public void ReverseText_Test(string input, string expected)
         {
             //Arrange
