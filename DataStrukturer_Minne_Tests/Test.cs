@@ -73,11 +73,6 @@ namespace DataStrukturer_Minne_Tests
         [Test()]
         public void RecursiveFibonacci_Test()
         {
-            //Arrange
-
-            //Act
-            int actual = RecursiveFibonacci(4);
-
             //Assert
             Assert.Fail();
         }
@@ -93,6 +88,34 @@ namespace DataStrukturer_Minne_Tests
 
             //Assert
             CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestCase("paris", "sirap")]
+        [TestCase("hannah", "hannah")]
+        [TestCase("Z", "Z")]
+        public void ReverseText_Test(string input, string expected)
+        {
+            //Arrange
+
+            //Act
+            var actual = ReverseText(input);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test()]
+        public void ReverseText_NullValue_Test()
+        {
+            //Arrange
+            string input = null;
+            string expected = null;
+
+            //Act
+            var actual = ReverseText(input);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
