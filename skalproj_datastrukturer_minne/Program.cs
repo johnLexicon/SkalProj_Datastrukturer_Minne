@@ -110,6 +110,31 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            Queue<string> queue = new Queue<string>();
+
+            while (true)
+            {
+                Console.WriteLine("Menu Examine Queue \n0.quit\n1.Add value to queue\n2.Remove from queue\n3.Print queue");
+                string menuOption = AskForString("Menu option: ");
+                switch (menuOption)
+                {
+                    case "1":
+                        string valueToAdd = AskForString("Write value to add to the queue: ");
+                        queue.Enqueue(valueToAdd);
+                        break;
+                    case "2":
+                        queue.Dequeue();
+                        break;
+                    case "3":
+                        queue.ToList().ForEach(item => Console.WriteLine(item));
+                        break;
+                    case "0":
+                        return;
+                    default:
+                        Console.WriteLine($"{menuOption} is not an option!!!");
+                        break;
+                }
+            }
         }
 
         /// <summary>
