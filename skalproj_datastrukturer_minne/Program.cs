@@ -92,13 +92,24 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            List<string> theList = new List<string>();
+            string input = Console.ReadLine();
+            char nav = input[0];
+            string value = input.Substring(1);
 
-            //switch(nav){...}
-        }
+            switch (nav)
+            {
+                case '+':
+                    break;
+                case '-':
+                    break;
+                default:
+                    Console.WriteLine($"{nav} is not an option!!!");
+                    break;
+            }
+
+
+    }
 
         /// <summary>
         /// Examines the datastructure Queue
