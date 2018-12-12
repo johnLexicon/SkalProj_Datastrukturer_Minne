@@ -229,6 +229,42 @@ namespace SkalProj_Datastrukturer_Minne
         }
 
         /// <summary>
+        /// Implemented method for assignment 3.2
+        /// </summary>
+        /// <param name="text">The given string by the user</param>
+        /// <returns>A string in reverse order or null</returns>
+        internal static string ReverseText(string text)
+        {
+            if(text is null)
+            {
+                return text;
+            }
+
+            Stack<char> characters = new Stack<char>();
+            var reverseText = new StringBuilder();
+
+            foreach (char ch in text)
+            {
+                characters.Push(ch);
+            }
+
+            while (characters.Count() > 0)
+            {
+                try
+                {
+                    reverseText.Append(characters.Pop());
+                }
+                catch (InvalidOperationException e)
+                {
+                    Console.WriteLine($"Something went really wrong!!! {e.Message}");
+                    break;
+                }
+            }
+
+            return reverseText.ToString();
+        }
+
+        /// <summary>
         /// Asks for string.
         /// </summary>
         /// <returns>The user answer</returns>
