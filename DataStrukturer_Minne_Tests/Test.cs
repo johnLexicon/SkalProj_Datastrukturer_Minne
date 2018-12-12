@@ -8,6 +8,7 @@ namespace DataStrukturer_Minne_Tests
     public class Test
     {
 
+        [TestCase(0, 0)]
         [TestCase(1, 2)]
         [TestCase(2, 4)]
         [TestCase(3, 6)]
@@ -18,6 +19,22 @@ namespace DataStrukturer_Minne_Tests
 
             //Act
             int actual = RecursiveEven(input);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, 0)]
+        [TestCase(1, 2)]
+        [TestCase(2, 4)]
+        [TestCase(3, 6)]
+        [TestCase(11, 22)]
+        public void IterativeEven_Test(int input, int expected)
+        {
+            //Arrange
+
+            //Act
+            int actual = IterativeEven(input);
 
             //Assert
             Assert.AreEqual(expected, actual);
