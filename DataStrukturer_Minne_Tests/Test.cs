@@ -124,6 +124,20 @@ namespace DataStrukturer_Minne_Tests
             Assert.AreEqual(expected, actual);
         }
 
+        public void ExamineList_EmptyList_Test()
+        {
+            //Arrange
+            int expectedCapacity = 0;
+            List<string> list;
+
+            //Act
+            list = new List<string>();
+            int actualCapacity = 0;
+
+            //Assert
+            Assert.AreEqual(expectedCapacity, actualCapacity);
+        }
+
         [TestCase(1)]
         [TestCase(4)]
         [TestCase(5)]
