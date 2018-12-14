@@ -12,6 +12,11 @@ namespace DataStrukturer_Minne_Tests
     public class Test
     {
 
+        /// <summary>
+        /// Öving 5.2: RecursiveEven
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="expected"></param>
         [TestCase(0, 0)]
         [TestCase(1, 2)]
         [TestCase(2, 4)]
@@ -28,6 +33,11 @@ namespace DataStrukturer_Minne_Tests
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Övning 6.2: Iterative Even
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="expected"></param>
         [TestCase(0, 0)]
         [TestCase(1, 2)]
         [TestCase(2, 4)]
@@ -44,6 +54,10 @@ namespace DataStrukturer_Minne_Tests
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Övning 4.2: Check Parentheses Wellformed
+        /// </summary>
+        /// <param name="wellFormed"></param>
         [TestCase("[({})]")]
         [TestCase("List<int> lista = new List<int>() { 2, 3, 4 };")]
         [TestCase("no parentheses")]
@@ -59,6 +73,10 @@ namespace DataStrukturer_Minne_Tests
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Övning 4.2: Check parentheses Malformed
+        /// </summary>
+        /// <param name="malFormed"></param>
         [TestCase("({)}")]
         [TestCase("[")]
         [TestCase("{})")]
@@ -81,6 +99,9 @@ namespace DataStrukturer_Minne_Tests
             Assert.Fail();
         }
 
+        /// <summary>
+        /// Övning 6.3 Iterative fibonacci
+        /// </summary>
         [Test()]
         public void IterativeFibonacci_Test()
         {
@@ -94,8 +115,14 @@ namespace DataStrukturer_Minne_Tests
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Övning 3.2: Reverse text
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="expected"></param>
         [TestCase("paris", "sirap")]
         [TestCase("hannah", "hannah")]
+        [TestCase("nitalarbralatin", "nitalarbralatin")]
         [TestCase("Z", "Z")]
         [TestCase("", "")]
         [TestCase("   ", "   ")]
@@ -110,6 +137,9 @@ namespace DataStrukturer_Minne_Tests
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Övning 3.2: Reverse text null value.
+        /// </summary>
         [Test()]
         public void ReverseText_NullValue_Test()
         {
@@ -196,7 +226,6 @@ namespace DataStrukturer_Minne_Tests
             LoggListCapacity(filePath, content);
 
             //Assert
-            //TODO: Check group assertion
             CollectionAssert.AreEqual(expected, actual);
             Assert.AreEqual(expectedCapacity, actual.Capacity);
         }
@@ -208,6 +237,7 @@ namespace DataStrukturer_Minne_Tests
         /// </summary>
         /// <param name="elemNumber"></param>
         [TestCase(50)]
+        [TestCase(1000)]
         public void ExamineList_RemoveValues_Test(int elemNumber)
         {
             //Arrange
@@ -217,13 +247,19 @@ namespace DataStrukturer_Minne_Tests
             List<string> list = new List<string>(elements);
             var content = new StringBuilder();
 
+            content.Append($"Start number of elements: {elemNumber}");
+            content.Append(Environment.NewLine);
+            content.Append('-', 30);
+            content.Append(Environment.NewLine);
+
             //Act
-            while(list.Count > 0)
+            while (list.Count > 0)
             {
                 ListHandler("hej", list, Operation.Remove);
                 content.Append($"Count: {list.Count}");
                 content.Append(Environment.NewLine);
-                list.TrimExcess(); //To trim the Capacity of the list.
+                //TODO: Test with TrimExess()
+                //list.TrimExcess(); //To trim the Capacity of the list.
                 content.Append($"Capacity: {list.Capacity}");
                 content.Append(Environment.NewLine);
                 content.Append(Environment.NewLine);
