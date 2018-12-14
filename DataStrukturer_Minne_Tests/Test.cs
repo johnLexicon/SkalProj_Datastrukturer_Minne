@@ -144,7 +144,11 @@ namespace DataStrukturer_Minne_Tests
 
         /// <summary>
         /// Övning 1.1: ExamineList()
-        /// Svar 1.2: Kapacitets ökning: 0, 4, 8, 16, 32, 64, 128...
+        /// Svar 1.2: När man ska lägga till en element och det inte finns utrymme för detta element
+        /// E.g när man ska lägga till femte elementet och kapaciteten ligger på fyra.
+        /// Svar 1.3: Kapacitets ökar med Två potens: 0, 4, 8, 16, 32, 64, 128...
+        /// Svar 1.4: Kapaciteten ökar inte vid varje element som läggs till eftersom 
+        /// hela underliggande arrayen måste kopieras vilket är tidskrävande. 
         /// När man lägger in första elementet ökar kapacitet från 0 till 4.
         /// När man lägger in femte elementet ökar kapacitet från 4 till 8 o.s.v
         /// </summary>
@@ -168,7 +172,7 @@ namespace DataStrukturer_Minne_Tests
             int expectedCapacity = expected.Capacity;
             StringBuilder content = new StringBuilder();
 
-            //Log expected list count and capacity:
+            //Info about expected list count and capacity:
             content.Append($"Expected List Count: {expected.Count}");
             content.Append(Environment.NewLine);
             content.Append($"Expected List Capacity: {expected.Capacity}");
@@ -187,6 +191,7 @@ namespace DataStrukturer_Minne_Tests
                 content.Append(Environment.NewLine);
             }
 
+            //Log content.
             string filePath = string.Format(@"C:\Users\John\listCapacityLogs\logg_list_capacity_{0}_elems.txt", elemNumber);
             LoggListCapacity(filePath, content);
 
@@ -196,26 +201,40 @@ namespace DataStrukturer_Minne_Tests
             Assert.AreEqual(expectedCapacity, actual.Capacity);
         }
 
-        [TestCase(10)]
+        /// <summary>
+        /// Övning 1.1: ExamineList()
+        /// Svar 1.5: Kapaciteten minskar inte när man tar bort element från listan. Man kan dock använda sig av metoden TrimExess().
+        /// Svar 1.6: Använd arrays när man inte behöver ändra på datastrukturens storlek samt när man är i behov av bättre prestanda. 
+        /// </summary>
+        /// <param name="elemNumber"></param>
+        [TestCase(50)]
         public void ExamineList_RemoveValues_Test(int elemNumber)
         {
             //Arrange
-            var generatedString = string.Concat(System.Linq.Enumerable.Repeat("hej-", elemNumber))
-                            .TrimEnd(new char[] { '-' });
-
+            int expectedCapacity = elemNumber;
+            var generatedString = string.Concat(System.Linq.Enumerable.Repeat("hej-", elemNumber)).TrimEnd(new char[] { '-' });
             string[] elements = generatedString.Split('-');
-
-            List<string> actual = new List<string>(elements);
-            List<string> expected = new List<string>();
+            List<string> list = new List<string>(elements);
+            var content = new StringBuilder();
 
             //Act
-            while(actual.Count > 0)
+            while(list.Count > 0)
             {
-                ListHandler("hej", actual, Operation.Remove);
+                ListHandler("hej", list, Operation.Remove);
+                content.Append($"Count: {list.Count}");
+                content.Append(Environment.NewLine);
+                list.TrimExcess(); //To trim the Capacity of the list.
+                content.Append($"Capacity: {list.Capacity}");
+                content.Append(Environment.NewLine);
+                content.Append(Environment.NewLine);
             }
 
+            //Log content.
+            string filePath = string.Format(@"C:\Users\John\listCapacityLogs\logg_list_capacity_{0}_removeElems.txt", elemNumber);
+            LoggListCapacity(filePath, content);
+
             //Assert
-            CollectionAssert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedCapacity, list.Capacity);
         }
 
         private void LoggListCapacity(string filePath, StringBuilder content)
