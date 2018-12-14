@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace SkalProj_Datastrukturer_Minne
 {
+
+    internal enum Operation
+    {
+        Add,
+        Remove
+    };
+
     class Program
     {
+
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
@@ -78,6 +86,24 @@ namespace SkalProj_Datastrukturer_Minne
         }
 
         /// <summary>
+        /// Used for the assignment 1.1. Decoupled functionality from the ExamineList method for test purposes.
+        /// </summary>
+        /// <param name="text">The text to add or remove in the list</param>
+        /// <param name="theList">Reference to the list to manipulate</param>
+        /// <param name="operation">The operation to make to the list</param>
+        internal static void ListHandler(string text, List<string> theList, Operation operation)
+        {
+            if (operation == Operation.Add)
+            {
+                theList.Add(text);
+            }
+            else
+            {
+                theList.Remove(text);
+            }
+        }
+
+        /// <summary>
         /// Examines the datastructure List
         /// </summary>
         static void ExamineList()
@@ -100,16 +126,16 @@ namespace SkalProj_Datastrukturer_Minne
             switch (nav)
             {
                 case '+':
+                    ListHandler(value, theList, Operation.Add);
                     break;
                 case '-':
+                    ListHandler(value, theList, Operation.Remove);
                     break;
                 default:
                     Console.WriteLine($"{nav} is not an option!!!");
                     break;
             }
-
-
-    }
+        }
 
         /// <summary>
         /// Examines the datastructure Queue
