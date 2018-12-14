@@ -57,8 +57,7 @@ namespace SkalProj_Datastrukturer_Minne
                         ExamineStack();
                         break;
                     case '4':
-                        string text = AskForString("Give text to check for parenthesis: ");
-                        CheckParantheses(text);
+                        Exercise_4();
                         break;
                     case '5':
                         int number = AskForInteger("Give a number for the recursive even method: ");
@@ -69,7 +68,8 @@ namespace SkalProj_Datastrukturer_Minne
                         int fiNumber = AskForInteger("Give number for the Fibonacci method: ");
                         IList<int> fiResult = IterativeFibonacci(fiNumber);
                         Console.WriteLine("Iterative fibonacci result:");
-                        //TODO: Print out the result, look how to use yield in this assignment.
+                        fiResult.ToList<int>().ForEach(item => Console.WriteLine(item));
+                        Console.WriteLine();
                         break;
                     case '7':
                         int ieNumber = AskForInteger("Give number for the Iterative Even method: ");
@@ -85,6 +85,30 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
+        private static void Exercise_4()
+        {
+            do
+            {
+                string text = AskForString("Give text to check for parentheses or write quit: ");
+                if (text.ToLower().Equals("quit"))
+                {
+                    break;
+                }
+
+                bool wellFormed = CheckParantheses(text);
+
+                if (wellFormed)
+                {
+                    Console.WriteLine("Text is wellformed.");
+                }
+                else
+                {
+                    Console.WriteLine("Text is malformed.");
+                }
+
+            } while (true);
+        }
+
         /// <summary>
         /// Used for the assignment 1.1. Decoupled functionality from the ExamineList method for test purposes.
         /// </summary>
@@ -96,10 +120,21 @@ namespace SkalProj_Datastrukturer_Minne
             if (operation == Operation.Add)
             {
                 theList.Add(text);
+                Console.WriteLine($"Added {text}");
+                Console.WriteLine($"Count = {theList.Count}, Capacity = {theList.Capacity}");
             }
             else
             {
-                theList.Remove(text);
+                bool wasRemoved = theList.Remove(text);
+                if (wasRemoved)
+                {
+                    Console.WriteLine($"Removed {text}");
+                    Console.WriteLine($"Count = {theList.Count}, Capacity = {theList.Capacity}");
+                }
+                else
+                {
+                    Console.WriteLine($"{text} not found in the list");
+                }
             }
         }
 
@@ -118,23 +153,33 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            List<string> theList = new List<string>();
-            string input = Console.ReadLine();
-            char nav = input[0];
-            string value = input.Substring(1);
+            Console.WriteLine("+: Use + sign at the beginning of the text to add the text to the list.");
+            Console.WriteLine("-: Use - sign at the beginning of the text to remove the text from the list");
+            Console.WriteLine("q: Use q to exit the ExamineList exercise");
 
-            switch (nav)
+            List<string> theList = new List<string>();
+
+            do
             {
-                case '+':
-                    ListHandler(value, theList, Operation.Add);
-                    break;
-                case '-':
-                    ListHandler(value, theList, Operation.Remove);
-                    break;
-                default:
-                    Console.WriteLine($"{nav} is not an option!!!");
-                    break;
-            }
+                string input = AskForString("Input: ");
+                char nav = input[0];
+                string value = input.Substring(1);
+
+                switch (nav)
+                {
+                    case '+':
+                        ListHandler(value, theList, Operation.Add);
+                        break;
+                    case '-':
+                        ListHandler(value, theList, Operation.Remove);
+                        break;
+                    case 'q':
+                        return;
+                    default:
+                        Console.WriteLine($"{nav} is not an option!!!");
+                        break;
+                }
+            } while (true);
         }
 
         /// <summary>
@@ -149,9 +194,11 @@ namespace SkalProj_Datastrukturer_Minne
             */
             Queue<string> queue = new Queue<string>();
 
+            Console.WriteLine("Menu Examine Queue \n0.quit\n1.Add value to queue\n2.Remove from queue\n3.Print queue");
+
             while (true)
             {
-                Console.WriteLine("Menu Examine Queue \n0.quit\n1.Add value to queue\n2.Remove from queue\n3.Print queue");
+                
                 string menuOption = AskForString("Menu option: ");
                 switch (menuOption)
                 {
@@ -160,10 +207,18 @@ namespace SkalProj_Datastrukturer_Minne
                         queue.Enqueue(valueToAdd);
                         break;
                     case "2":
-                        queue.Dequeue();
+                        try {
+                            queue.Dequeue();
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Console.WriteLine("Queue is empty already!!!");
+                        }
                         break;
                     case "3":
+                        Console.WriteLine();
                         queue.ToList().ForEach(item => Console.WriteLine(item));
+                        Console.WriteLine();
                         break;
                     case "0":
                         return;
@@ -184,7 +239,17 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            do
+            {
+                string answer = AskForString("Add text you want to see in reverse or write quit to exit: ");
+                if (answer.ToLower().Equals("quit"))
+                {
+                    return;
+                }
 
+                string result = ReverseText(answer);
+                Console.WriteLine(result);
+            } while (true);
         }
 
         internal static bool CheckParantheses(string text)
@@ -265,7 +330,6 @@ namespace SkalProj_Datastrukturer_Minne
             return result;
         }
 
-        //TODO: Implement this if you can:-)
         internal static int RecursiveFibonacci(int n)
         {
 
@@ -281,7 +345,7 @@ namespace SkalProj_Datastrukturer_Minne
         {
             List<int> elements = new List<int> { 1, 1 };
 
-            for(int i = 0; i < elementsCount; i++)
+            for(int i = 0; i < (elementsCount - 2); i++)
             {
                 int newElement = elements[i] + elements[i + 1];
                 elements.Add(newElement);
