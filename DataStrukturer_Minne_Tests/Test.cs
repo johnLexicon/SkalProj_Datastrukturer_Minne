@@ -124,6 +124,10 @@ namespace DataStrukturer_Minne_Tests
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Övning 1.1: ExamineList()
+        /// Svar 1.2: En tom lista får kapaciteten 0.
+        /// </summary>
         public void ExamineList_EmptyList_Test()
         {
             //Arrange
@@ -138,6 +142,13 @@ namespace DataStrukturer_Minne_Tests
             Assert.AreEqual(expectedCapacity, actualCapacity);
         }
 
+        /// <summary>
+        /// Övning 1.1: ExamineList()
+        /// Svar 1.2: Kapacitets ökning: 0, 4, 8, 16, 32, 64, 128...
+        /// När man lägger in första elementet ökar kapacitet från 0 till 4.
+        /// När man lägger in femte elementet ökar kapacitet från 4 till 8 o.s.v
+        /// </summary>
+        /// <param name="elemNumber">Antal element som listan ska fyllas med</param>
         [TestCase(1)]
         [TestCase(4)]
         [TestCase(5)]
