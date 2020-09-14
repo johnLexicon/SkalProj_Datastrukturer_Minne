@@ -66,7 +66,7 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                     case '6':
                         int fiNumber = AskForInteger("Give number for the Fibonacci method: ");
-                        IList<int> fiResult = IterativeFibonacci(fiNumber);
+                        IEnumerable<int> fiResult = Fibonacci(fiNumber);
                         Console.WriteLine("Iterative fibonacci result:");
                         fiResult.ToList<int>().ForEach(item => Console.WriteLine(item));
                         Console.WriteLine();
@@ -352,6 +352,18 @@ namespace SkalProj_Datastrukturer_Minne
             }
 
             return elements;
+        }
+
+        internal static IEnumerable<int> Fibonacci(int elementsCount)
+        {
+            for(int i = 0, j = 0, k = 1; i < elementsCount; i++)
+            {
+                yield return j;
+                int temp = j + k;
+                j = k;
+                k = temp;
+            }
+
         }
 
         /// <summary>
